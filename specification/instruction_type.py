@@ -60,5 +60,9 @@ class InstructionType(object):
     @classmethod 
     def params_def(cls):
         return ()
+    
+    @classmethod
+    def children(cls):
+        return cls.__children[:]
 
   
