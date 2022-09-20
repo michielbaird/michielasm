@@ -1,0 +1,1423 @@
+
+<html>
+    <head>
+    <style>
+.bit_table {
+    border-collapse: collapse;
+}
+.left_most {
+    border-left: 1px solid black;
+}
+.right_border {
+    border-right: 1px solid black;
+}
+.bit_cell {
+    height: 22px;
+    width: 30px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.bit_header {
+    text-align: right;
+}
+</style>
+    </head>
+    <body>
+<h2>InstructionType</h2>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="16">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="16">
+            
+        </td>
+    </tr>
+</table>
+
+<h3>DoubleImmediate</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="15">1</td><td class= "bit_header" colspan="1">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="15">
+            
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+    </tr>
+</table>
+
+<h4>AddI</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="7">3</td><td class= "bit_header" colspan="2">1</td><td class= "bit_header" colspan="1">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell right_border" colspan="7">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+    </tr>
+</table>
+
+<h4>SubI</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="7">3</td><td class= "bit_header" colspan="2">1</td><td class= "bit_header" colspan="1">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell right_border" colspan="7">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+    </tr>
+</table>
+
+<h3>SingleImmediate</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="14">2</td><td class= "bit_header" colspan="2">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="14">
+            
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LDI</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="9">4</td><td class= "bit_header" colspan="2">2</td><td class= "bit_header" colspan="2">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="9">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>STI</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="9">4</td><td class= "bit_header" colspan="2">2</td><td class= "bit_header" colspan="2">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="9">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LDIB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="9">4</td><td class= "bit_header" colspan="2">2</td><td class= "bit_header" colspan="2">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="9">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>STIB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="9">4</td><td class= "bit_header" colspan="2">2</td><td class= "bit_header" colspan="2">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="9">
+            value
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h3>BinaryOp</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>AndOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>OrOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>XorOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>AddOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>AddUOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>SlOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>SrOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>SubOperator</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            register_
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h3>TripleParam</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="12">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="12">
+            
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LDR</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            offset_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>STR</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            offset_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LDRB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            offset_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>STRB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            offset_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h3>Double</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="8">8</td><td class= "bit_header" colspan="8">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="8">
+            
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>JEZ</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="2">8</td><td class= "bit_header" colspan="8">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            check_reg
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            address_r
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>NOT</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="2">8</td><td class= "bit_header" colspan="8">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>RSR</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="2">8</td><td class= "bit_header" colspan="8">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            special_r
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>WSR</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="2">8</td><td class= "bit_header" colspan="8">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            special_r
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h3>SingleConsumer</h3>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="5">11</td><td class= "bit_header" colspan="11">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="5">
+            
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LD</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="2">11</td><td class= "bit_header" colspan="11">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>ST</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="2">11</td><td class= "bit_header" colspan="11">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>LDB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="2">11</td><td class= "bit_header" colspan="11">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            target_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+<h4>STB</h4>
+<p><p>
+
+<table class="bit_table" style="width:600px">
+    <colgroup>
+        <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
+    </colgroup>
+    <tr>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="2">11</td><td class= "bit_header" colspan="11">0</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="bit_cell left_most right_border" colspan="3">
+            source_re
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            0
+        </td>
+        <td class="bit_cell" colspan="1">
+            1
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+        <td class="bit_cell right_border" colspan="1">
+            0
+        </td>
+    </tr>
+</table>
+
+    </body>
+</html>
