@@ -25,7 +25,10 @@
     </head>
     <body>
 <h2>InstructionType</h2>
-<p><p>
+<p>
+    Base instruction type. All values are can be overwritten by 
+    subclasses of this type. 
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
@@ -43,19 +46,31 @@
 </table>
 
 <h3>DoubleImmediate</h3>
-<p><p>
+<p>
+    Instructions of this type, take 3 parameters. Two register_indexes
+    followed by a 7-bit immediate value.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
         <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
     </colgroup>
     <tr>
-        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="15">1</td><td class= "bit_header" colspan="1">0</td>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="7">3</td><td class= "bit_header" colspan="2">1</td><td class= "bit_header" colspan="1">0</td>
     </tr>
     <tr>
         <td></td>
-        <td class="bit_cell left_most right_border" colspan="15">
-            
+        <td class="bit_cell left_most right_border" colspan="3">
+            reg_1
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            reg_2
+        </td>
+        <td class="bit_cell right_border" colspan="7">
+            immediate_value
+        </td>
+        <td class="bit_cell right_border" colspan="2">
+            opcode
         </td>
         <td class="bit_cell right_border" colspan="1">
             1
@@ -76,10 +91,10 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            source_re
+            source
         </td>
         <td class="bit_cell right_border" colspan="7">
             value
@@ -109,10 +124,10 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            source_re
+            source
         </td>
         <td class="bit_cell right_border" colspan="7">
             value
@@ -130,19 +145,29 @@
 </table>
 
 <h3>SingleImmediate</h3>
-<p><p>
+<p>
+    Instructions of this form have two parameters. The first
+    is a 3-bit register identifier and the second is an 9-bit immediate value.<p><p>    Each instruction can be distinguished by a 2-bit opcode that should 
+    be set for each subclass.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
         <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
     </colgroup>
     <tr>
-        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="14">2</td><td class= "bit_header" colspan="2">0</td>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="9">4</td><td class= "bit_header" colspan="2">2</td><td class= "bit_header" colspan="2">0</td>
     </tr>
     <tr>
         <td></td>
-        <td class="bit_cell left_most right_border" colspan="14">
-            
+        <td class="bit_cell left_most right_border" colspan="3">
+            register
+        </td>
+        <td class="bit_cell right_border" colspan="9">
+            immediate_value
+        </td>
+        <td class="bit_cell right_border" colspan="2">
+            opcode
         </td>
         <td class="bit_cell right_border" colspan="1">
             1
@@ -286,7 +311,13 @@
 </table>
 
 <h3>BinaryOp</h3>
-<p><p>
+<p>
+    Instructions of this type take 3 3-bit parameters.
+    Subclasses should overwrite a 3-bit opcode. 
+    This set, however, is reserved for binary operations.
+    Here register_1 and register_2 is passed to the operator
+    and the result is written to the target register.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
@@ -298,16 +329,16 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell right_border" colspan="3">
-            
+            opcode
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -337,13 +368,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -382,13 +413,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -427,13 +458,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -472,13 +503,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -517,13 +548,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             1
@@ -562,13 +593,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             1
@@ -607,13 +638,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             1
@@ -652,13 +683,13 @@
     <tr>
         <td></td>
         <td class="bit_cell left_most right_border" colspan="3">
-            target_re
+            target
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_2
         </td>
         <td class="bit_cell right_border" colspan="3">
-            register_
+            reg_1
         </td>
         <td class="bit_cell" colspan="1">
             1
@@ -685,19 +716,31 @@
 </table>
 
 <h3>TripleParam</h3>
-<p><p>
+<p>
+    Instructions of this type take 3 3-bit parameters.
+    Subclasses should overwrite a 3-bit opcode.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
         <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
     </colgroup>
     <tr>
-        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="12">4</td><td class= "bit_header" colspan="4">0</td>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="3">7</td><td class= "bit_header" colspan="3">4</td><td class= "bit_header" colspan="4">0</td>
     </tr>
     <tr>
         <td></td>
-        <td class="bit_cell left_most right_border" colspan="12">
-            
+        <td class="bit_cell left_most right_border" colspan="3">
+            param_1
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            param_2
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            param_3
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            opcode
         </td>
         <td class="bit_cell" colspan="1">
             1
@@ -895,19 +938,29 @@
 </table>
 
 <h3>Double</h3>
-<p><p>
+<p>
+    This class of instruction is defined by having two
+    3-bit instructions. Subclasses have to set a unique
+    2-bit opcode.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
         <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
     </colgroup>
     <tr>
-        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="8">8</td><td class= "bit_header" colspan="8">0</td>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="3">10</td><td class= "bit_header" colspan="2">8</td><td class= "bit_header" colspan="8">0</td>
     </tr>
     <tr>
         <td></td>
-        <td class="bit_cell left_most right_border" colspan="8">
-            
+        <td class="bit_cell left_most right_border" colspan="3">
+            reg_1
+        </td>
+        <td class="bit_cell right_border" colspan="3">
+            reg_2
+        </td>
+        <td class="bit_cell right_border" colspan="2">
+            opcode
         </td>
         <td class="bit_cell" colspan="1">
             0
@@ -1141,19 +1194,27 @@
 </table>
 
 <h3>SingleConsumer</h3>
-<p><p>
+<p>
+    Instructions of this type take two parameters but are somewhat special.
+    The first instrcution points to a 3-bit register. The second parameter is a the word
+    following this instruction. The documentation/spec cannot represent this yet.
+    Subclass have to overwrite a unique 2-bit opcode.
+    <p>
 
 <table class="bit_table" style="width:600px">
     <colgroup>
         <col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/><col width="5.88%"/>
     </colgroup>
     <tr>
-        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="5">11</td><td class= "bit_header" colspan="11">0</td>
+        <td class= "bit_header" colspan="1">16</td><td class= "bit_header" colspan="3">13</td><td class= "bit_header" colspan="2">11</td><td class= "bit_header" colspan="11">0</td>
     </tr>
     <tr>
         <td></td>
-        <td class="bit_cell left_most right_border" colspan="5">
-            
+        <td class="bit_cell left_most right_border" colspan="3">
+            register
+        </td>
+        <td class="bit_cell right_border" colspan="2">
+            opcode
         </td>
         <td class="bit_cell" colspan="1">
             0

@@ -1,6 +1,13 @@
 from .instruction_type import InstructionType
 
 class BinaryOp(InstructionType):
+    """
+    Instructions of this type take 3 3-bit parameters.
+    Subclasses should overwrite a 3-bit opcode. 
+    This set, however, is reserved for binary operations.
+    Here register_1 and register_2 is passed to the operator
+    and the result is written to the target register.
+    """
     @classmethod
     def fixed(cls):
         opc = cls.opcode()
@@ -13,11 +20,12 @@ class BinaryOp(InstructionType):
 
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target_register"),
-            (10, 13, "register_2"),
-            (7, 10, "register_1"),
-        )
+        extra = [ (4, 7, "opcode") ] if cls.opcode() is None else []
+        return [
+            (13, 16, "target"),
+            (10, 13, "reg_2"),
+            (7, 10, "reg_1"),
+        ] + extra
 
 class AndOperator(BinaryOp):
     @classmethod

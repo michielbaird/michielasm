@@ -1,11 +1,24 @@
 from .instruction_type import InstructionType
 
 class TripleParam(InstructionType):
+    """
+    Instructions of this type take 3 3-bit parameters.
+    Subclasses should overwrite a 3-bit opcode.
+    """
     @classmethod
     def fixed(cls):
         opc = cls.opcode()
         extra = [] if opc is None else [(4, 7, opc)]
         return super().fixed() + [(0, 4, "0001")] + extra
+    
+    @classmethod
+    def params_def(cls):
+        return (
+            (13, 16, "param_1"),
+            (10, 13, "param_2"),
+            (7, 10, "param_3"),
+            (4, 7, "opcode")
+        )
 
     @classmethod
     def opcode(cls):

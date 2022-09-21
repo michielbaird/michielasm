@@ -1,12 +1,23 @@
 from .instruction_type import InstructionType
 
 class Double(InstructionType):
+    """
+    This class of instruction is defined by having two
+    3-bit instructions. Subclasses have to set a unique
+    2-bit opcode.
+    """
     @classmethod
     def fixed(cls):
         opc = cls.opcode()
         extra = [] if opc is None else [(8, 10, opc)] 
         return super().fixed() + [(0, 8, 4)] + extra
-
+    @classmethod
+    def params_def(cls):
+        return (
+            (13, 16, "reg_1"),
+            (10, 13, "reg_2"),
+            (8, 10, "opcode"),
+        )
     @classmethod
     def opcode(cls):
         return None

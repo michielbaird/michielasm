@@ -1,9 +1,24 @@
 from .instruction_type import InstructionType
 
 class SingleImmediate(InstructionType):
+    """
+    Instructions of this form have two parameters. The first
+    is a 3-bit register identifier and the second is an 9-bit immediate value.
+
+    Each instruction can be distinguished by a 2-bit opcode that should 
+    be set for each subclass.
+    """
     @classmethod
     def fixed(cls):
         return super().fixed() + [(0, 2, "01")]
+    
+    @classmethod
+    def params_def(cls):
+        return (
+            (13, 16, "register"),
+            (4, 13, "immediate_value"),
+            (2, 4, "opcode")
+        )
 
 class LDI(SingleImmediate):
     @classmethod

@@ -8,6 +8,10 @@ BIT_WIDTH = 16
 
 
 class InstructionType(object):
+    """
+    Base instruction type. All values are can be overwritten by 
+    subclasses of this type. 
+    """
     __children = []
     def __init_subclass__(cls, *args, **kwargs):
         super().__init_subclass__(*args, *kwargs)
