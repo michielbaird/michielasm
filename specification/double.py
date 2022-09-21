@@ -1,3 +1,4 @@
+from .param import SubParam, LParam
 from .instruction_type import InstructionType
 
 class Double(InstructionType):
@@ -13,11 +14,11 @@ class Double(InstructionType):
         return super().fixed() + [(0, 8, 4)] + extra
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "reg_1"),
-            (10, 13, "reg_2"),
-            (8, 10, "opcode"),
-        )
+        return [
+            SubParam(13, 16, "reg_1"),
+            SubParam(10, 13, "reg_2"),
+            SubParam(8, 10, "opcode"),
+        ]
     @classmethod
     def opcode(cls):
         return None
@@ -28,20 +29,20 @@ class JEZ(Double):
         return 0
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "check_register"),
-            (10, 13, "address_register"),
-        )
+        return [
+            LParam(13, 16, "check_register"),
+            LParam(10, 13, "address_register"),
+        ]
 class NOT(Double):
     @classmethod
     def opcode(cls):
         return 1
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target_register"),
-            (10, 13, "source_register"),
-        )
+        return [
+            LParam(13, 16, "target_register"),
+            LParam(10, 13, "source_register"),
+        ]
 
 class RSR(Double):
     @classmethod
@@ -49,10 +50,10 @@ class RSR(Double):
         return 2
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target_register"),
-            (10, 13, "special_register"),
-        )
+        return [
+            LParam(13, 16, "target_register"),
+            LParam(10, 13, "special_register"),
+        ]
 
 class WSR(Double):
     @classmethod
@@ -60,7 +61,7 @@ class WSR(Double):
         return 3
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "source_register"),
-            (10, 13, "special_register"),
-        )   
+        return [
+            LParam(13, 16, "source_register"),
+            LParam(10, 13, "special_register"),
+        ]

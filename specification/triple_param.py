@@ -1,3 +1,4 @@
+from .param import SubParam, LParam
 from .instruction_type import InstructionType
 
 class TripleParam(InstructionType):
@@ -13,12 +14,12 @@ class TripleParam(InstructionType):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "param_1"),
-            (10, 13, "param_2"),
-            (7, 10, "param_3"),
-            (4, 7, "opcode")
-        )
+        return [
+            SubParam(13, 16, "param_1"),
+            SubParam(10, 13, "param_2"),
+            SubParam(7, 10, "param_3"),
+            SubParam(4, 7, "opcode")
+        ]
 
     @classmethod
     def opcode(cls):
@@ -31,11 +32,11 @@ class LDR(TripleParam):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (10, 13, "target_register"),
-            (7, 10, "offset_register")
-        )
+        return [
+            LParam(13, 16, "address_register"),
+            LParam(10, 13, "target_register"),
+            LParam(7, 10, "offset_register")
+        ]
 
 class STR(TripleParam):
     @classmethod
@@ -44,11 +45,11 @@ class STR(TripleParam):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (10, 13, "source_register"),
-            (7, 10, "offset_register")
-        )
+        return [
+            LParam(13, 16, "address_register"),
+            LParam(10, 13, "source_register"),
+            LParam(7, 10, "offset_register")
+        ]
 
 class LDRB(TripleParam):
     @classmethod
@@ -57,11 +58,11 @@ class LDRB(TripleParam):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (10, 13, "target_register"),
-            (7, 10, "offset_register")
-        )
+        return [
+            LParam(13, 16, "address_register"),
+            LParam(10, 13, "target_register"),
+            LParam(7, 10, "offset_register")
+        ]
 
 class STRB(TripleParam):
     @classmethod
@@ -70,8 +71,8 @@ class STRB(TripleParam):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (10, 13, "source_register"),
-            (7, 10, "offset_register")
-        )
+        return [
+            LParam(13, 16, "address_register"),
+            LParam(10, 13, "source_register"),
+            LParam(7, 10, "offset_register")
+        ]

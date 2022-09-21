@@ -1,4 +1,5 @@
 
+from .param import SubParam, LParam
 from .instruction_type import InstructionType 
 
 class DoubleImmediate(InstructionType):
@@ -11,12 +12,12 @@ class DoubleImmediate(InstructionType):
         return super().fixed() + [(0, 1, 1)]
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "reg_1"),
-            (10, 13, "reg_2"),
-            (3, 10, "immediate_value"),
-            (1, 3, "opcode")
-        )   
+        return [
+            SubParam(13, 16, "reg_1"),
+            SubParam(10, 13, "reg_2"),
+            SubParam(3, 10, "immediate_value"),
+            SubParam(1, 3, "opcode")
+        ]
 
 class AddI(DoubleImmediate):
     @classmethod
@@ -25,11 +26,11 @@ class AddI(DoubleImmediate):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target"),
-            (10, 13, "source"),
-            (3, 10, "value")
-        )
+        return [
+            LParam(13, 16, "target"),
+            LParam(10, 13, "source"),
+            LParam(3, 10, "value")
+        ]
 
 class SubI(DoubleImmediate):
     @classmethod
@@ -38,8 +39,8 @@ class SubI(DoubleImmediate):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target"),
-            (10, 13, "source"),
-            (3, 10, "value")
-        )
+        return [
+            LParam(13, 16, "target"),
+            LParam(10, 13, "source"),
+            LParam(3, 10, "value")
+        ]

@@ -1,4 +1,5 @@
 from specification import InstructionType, SubI, BIT_WIDTH
+from specification.param import LParam, PositionalParameter, SubParam
 
 STYLE = """
 .bit_table {
@@ -66,9 +67,17 @@ def bit_cell(last, val, width=1, right=False):
 
 def draw_bit_table(instruction_type) -> str:
     fixed = instruction_type.fixed()
-    param_defs = instruction_type.params_def()
+    ins_format = instruction_type.format()
+    param_defs = filter(
+        lambda x: isinstance(x, LParam) or
+            (
+                isinstance(x, SubParam) and 
+                ins_format[x.start] == "?"
+            ),
+        instruction_type.params_def()
+    )
     joined = [(f[0], f[1], "fixed", f[2]) for f in fixed] + \
-        [(pd[0], pd[1], "param", pd[2]) for pd in param_defs]
+        [(pd.start, pd.end, "param", pd.name) for pd in param_defs ]
     joined.sort(key=lambda x: -x[1])
     last = BIT_WIDTH
     i = 0

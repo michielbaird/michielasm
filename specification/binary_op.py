@@ -1,3 +1,4 @@
+from .param import SubParam, LParam
 from .instruction_type import InstructionType
 
 class BinaryOp(InstructionType):
@@ -20,12 +21,12 @@ class BinaryOp(InstructionType):
 
     @classmethod
     def params_def(cls):
-        extra = [ (4, 7, "opcode") ] if cls.opcode() is None else []
         return [
-            (13, 16, "target"),
-            (10, 13, "reg_2"),
-            (7, 10, "reg_1"),
-        ] + extra
+            SubParam(13, 16, "target"),
+            SubParam(10, 13, "reg_2"),
+            SubParam(7, 10, "reg_1"),
+            SubParam(4, 7, "opcode")
+        ]
 
 class AndOperator(BinaryOp):
     @classmethod
