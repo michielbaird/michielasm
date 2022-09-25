@@ -1,3 +1,4 @@
+from .param import SubParam, LParam
 from .instruction_type import InstructionType
 
 class SingleImmediate(InstructionType):
@@ -14,11 +15,11 @@ class SingleImmediate(InstructionType):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "register"),
-            (4, 13, "immediate_value"),
-            (2, 4, "opcode")
-        )
+        return [
+            SubParam(13, 16, "register"),
+            SubParam(4, 13, "immediate_value"),
+            SubParam(2, 4, "opcode")
+        ]
 
 class LDI(SingleImmediate):
     @classmethod
@@ -26,10 +27,10 @@ class LDI(SingleImmediate):
         return super().fixed() + [(2, 4, 0)]
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target_register"),
-            (4, 13, "value")
-        )
+        return [
+            LParam(13, 16, "target"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
+        ]
 
 class STI(SingleImmediate):
     @classmethod
@@ -37,10 +38,10 @@ class STI(SingleImmediate):
         return super().fixed() + [(2, 4, 1)]
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (4, 13, "value")
-        )
+        return [
+            LParam(13, 16, "address_register", param_type="ADDR_OR_REG"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
+        ]
 
 class LDIB(SingleImmediate):
     @classmethod
@@ -48,10 +49,10 @@ class LDIB(SingleImmediate):
         return super().fixed() + [(2, 4, 2)]
     @classmethod
     def params_def(cls):    
-        return (
-            (13, 16, "target_register"),
-            (4, 13, "value")
-        )
+        return [
+            LParam(13, 16, "target_register"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
+        ]
 
 class STIB(SingleImmediate):
     @classmethod
@@ -59,7 +60,7 @@ class STIB(SingleImmediate):
         return super().fixed() + [(2, 4, 3)]
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "address_register"),
-            (4, 13, "value")
-        )
+        return [
+            LParam(13, 16, "address_register", param_type="ADDR_OR_REG"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
+        ]

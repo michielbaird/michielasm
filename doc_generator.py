@@ -1,4 +1,6 @@
+#! /usr/bin/env python3
 from specification import InstructionType, SubI, BIT_WIDTH
+from specification.param import LParam, PositionalParameter, SubParam
 
 STYLE = """
 .bit_table {
@@ -66,9 +68,17 @@ def bit_cell(last, val, width=1, right=False):
 
 def draw_bit_table(instruction_type) -> str:
     fixed = instruction_type.fixed()
-    param_defs = instruction_type.params_def()
+    ins_format = instruction_type.format()
+    param_defs = filter(
+        lambda x: isinstance(x, LParam) or
+            (
+                isinstance(x, SubParam) and 
+                ins_format[x.start] == "?"
+            ),
+        instruction_type.params_def()
+    )
     joined = [(f[0], f[1], "fixed", f[2]) for f in fixed] + \
-        [(pd[0], pd[1], "param", pd[2]) for pd in param_defs]
+        [(pd.start, pd.end, "param", pd.name) for pd in param_defs ]
     joined.sort(key=lambda x: -x[1])
     last = BIT_WIDTH
     i = 0
@@ -101,7 +111,7 @@ def draw_bit_table(instruction_type) -> str:
 
 def generate_doc(instruction, depth=1):
     doc = []
-    doc.append("<h{d}>{name}</h{d}>".format(d=(depth+1), name=instruction.__name__))
+    doc.append("<h{d}>{name}</h{d}>".format(d=(depth+1), name=instruction.cmd_name()))
     main_doc = instruction.__doc__ or ""
     doc.append("".join("<p>{}<p>".format(v) for v in main_doc.split("\n\n")))
     doc.append(draw_bit_table(instruction))

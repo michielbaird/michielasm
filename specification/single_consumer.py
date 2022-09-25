@@ -1,3 +1,4 @@
+from .param import SubParam, LParam, NextWordParam
 from .instruction_type import InstructionType
 
 class SingleConsumer(InstructionType):
@@ -20,9 +21,8 @@ class SingleConsumer(InstructionType):
     @classmethod
     def params_def(cls):
         return (
-            (13, 16, "register"),
-            (11, 13, "opcode")
-            #TODO(next_byte)
+            SubParam(13, 16, "register"),
+            SubParam(11, 13, "opcode")
         )
 
 class LD(SingleConsumer):
@@ -32,10 +32,13 @@ class LD(SingleConsumer):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target"),
-            #TODO(next_word)
-        )
+        return [
+            LParam(13, 16, "target"),
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )
+        ]
 
 class ST(SingleConsumer):
     @classmethod
@@ -44,22 +47,28 @@ class ST(SingleConsumer):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "source"),
-            #TODO(next_word)
-        )
+        return [
+            LParam(13, 16, "source"),
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )        
+        ]
 
-class LDB(SingleConsumer):
+class LDW(SingleConsumer):
     @classmethod
     def opcode(cls):
         return 2
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "target"),
-            #TODO(next_word)
-        )
+        return [
+            LParam(13, 16, "target"),
+            NextWordParam(
+                "value", 
+                param_type="ADDR_OR_REG"
+            )        
+        ]
 
 class STB(SingleConsumer):
     @classmethod
@@ -68,7 +77,10 @@ class STB(SingleConsumer):
     
     @classmethod
     def params_def(cls):
-        return (
-            (13, 16, "source "),
-            #TODO(next_word)
-        )
+        return [
+            LParam(13, 16, "source"),
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )        
+        ]
