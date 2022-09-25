@@ -34,8 +34,8 @@ class LDR(TripleParam):
     def params_def(cls):
         return [
             LParam(13, 16, "address_register"),
+            LParam(7, 10, "offset_register"),
             LParam(10, 13, "target_register"),
-            LParam(7, 10, "offset_register")
         ]
 
 class STR(TripleParam):
@@ -47,8 +47,8 @@ class STR(TripleParam):
     def params_def(cls):
         return [
             LParam(13, 16, "address_register"),
-            LParam(10, 13, "source_register"),
-            LParam(7, 10, "offset_register")
+            LParam(7, 10, "offset_register"),
+            LParam(10, 13, "value_register"),
         ]
 
 class LDRB(TripleParam):
@@ -60,8 +60,8 @@ class LDRB(TripleParam):
     def params_def(cls):
         return [
             LParam(13, 16, "address_register"),
+            LParam(7, 10, "offset_register"),
             LParam(10, 13, "target_register"),
-            LParam(7, 10, "offset_register")
         ]
 
 class STRB(TripleParam):
@@ -73,6 +73,6 @@ class STRB(TripleParam):
     def params_def(cls):
         return [
             LParam(13, 16, "address_register"),
-            LParam(10, 13, "source_register"),
-            LParam(7, 10, "offset_register")
+            LParam(7, 10, "offset_register"),
+            LParam(10, 13, "value_register"),
         ]

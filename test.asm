@@ -3,15 +3,20 @@ noop;
 noop;
 test: mov $r0 $r1;
 mov $r0 $r2;
-addi $r1 256;
+addi $r1 $r1 10;
 ; comment
+
+test2: jmp test2+6;
 loop:
-   addi $r2 1;
-   subi $r1 1;
+   addi $r2 $r2 0b11;
+   subi $r1 $r1 1;
    jez $r1 end_loop;
    jmp loop;
 end_loop:
-st $r2 memory+1;
+rsr $s0 $r7;
+addi $r7 $r7 4;
+jez $r0 $r7;
+st $r2 memory;
 halt;
 
 

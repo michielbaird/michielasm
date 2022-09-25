@@ -12,6 +12,7 @@ class Double(InstructionType):
         opc = cls.opcode()
         extra = [] if opc is None else [(8, 10, opc)] 
         return super().fixed() + [(0, 8, 4)] + extra
+
     @classmethod
     def params_def(cls):
         return [
@@ -31,7 +32,12 @@ class JEZ(Double):
     def params_def(cls):
         return [
             LParam(13, 16, "check_register"),
-            LParam(10, 13, "address_register"),
+            LParam(
+                10, 
+                13, 
+                "address_register", 
+                param_type="ADDR_OR_REG"
+            ),
         ]
 class NOT(Double):
     @classmethod
@@ -40,8 +46,8 @@ class NOT(Double):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "target_register"),
             LParam(10, 13, "source_register"),
+            LParam(13, 16, "target_register"),
         ]
 
 class RSR(Double):
@@ -51,8 +57,8 @@ class RSR(Double):
     @classmethod
     def params_def(cls):
         return [
+            LParam(10, 13, "special_register", param_type="SPECIAL_REGISTER"),
             LParam(13, 16, "target_register"),
-            LParam(10, 13, "special_register"),
         ]
 
 class WSR(Double):
@@ -62,6 +68,6 @@ class WSR(Double):
     @classmethod
     def params_def(cls):
         return [
+            LParam(10, 13, "special_register", param_type="SPECIAL_REGISTER"),
             LParam(13, 16, "source_register"),
-            LParam(10, 13, "special_register"),
         ]

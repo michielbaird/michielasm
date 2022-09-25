@@ -21,49 +21,74 @@ class BinaryOp(InstructionType):
 
     @classmethod
     def params_def(cls):
-        return [
-            SubParam(13, 16, "target"),
-            SubParam(10, 13, "reg_2"),
+        return [            
+            SubParam(4, 7, "opcode"),
             SubParam(7, 10, "reg_1"),
-            SubParam(4, 7, "opcode")
+            SubParam(10, 13, "reg_2"),
+            SubParam(13, 16, "target"),
         ]
 
 class AndOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 0
+    @classmethod
+    def cmd_name(cls):
+        return "AND"
 
 class OrOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 1
+    @classmethod
+    def cmd_name(cls):
+        return "OR"
 
 class XorOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 2
+    @classmethod
+    def cmd_name(cls):
+        return "XOR"
 
 class AddOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 3
+    @classmethod
+    def cmd_name(cls):
+        return "ADD"
 
 class AddUOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 4
+    @classmethod
+    def cmd_name(cls):
+        return "ADDU"
 
 class SlOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 5
 
+    @classmethod
+    def cmd_name(cls):
+        return "SL"
+
 class SrOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 6
+    @classmethod
+    def cmd_name(cls):
+        return "SR"
 
 class SubOperator(BinaryOp):
     @classmethod
     def opcode(cls):
         return 7
+    @classmethod
+    def cmd_name(cls):
+        return "SUB"

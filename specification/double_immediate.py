@@ -15,7 +15,7 @@ class DoubleImmediate(InstructionType):
         return [
             SubParam(13, 16, "reg_1"),
             SubParam(10, 13, "reg_2"),
-            SubParam(3, 10, "immediate_value"),
+            SubParam(3, 10, "immediate_value", param_type="NUM_EXPR"),
             SubParam(1, 3, "opcode")
         ]
 
@@ -27,9 +27,9 @@ class AddI(DoubleImmediate):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "target"),
             LParam(10, 13, "source"),
-            LParam(3, 10, "value")
+            LParam(13, 16, "target"),
+            LParam(3, 10, "value", param_type="NUM_EXPR")
         ]
 
 class SubI(DoubleImmediate):
@@ -40,7 +40,7 @@ class SubI(DoubleImmediate):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "target"),
             LParam(10, 13, "source"),
-            LParam(3, 10, "value")
+            LParam(13, 16, "target"),
+            LParam(3, 10, "value", param_type="NUM_EXPR")
         ]

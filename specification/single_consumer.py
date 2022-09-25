@@ -34,7 +34,10 @@ class LD(SingleConsumer):
     def params_def(cls):
         return [
             LParam(13, 16, "target"),
-            NextWordParam("address")
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )
         ]
 
 class ST(SingleConsumer):
@@ -46,10 +49,13 @@ class ST(SingleConsumer):
     def params_def(cls):
         return [
             LParam(13, 16, "source"),
-            NextWordParam("address")
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )        
         ]
 
-class LDB(SingleConsumer):
+class LDW(SingleConsumer):
     @classmethod
     def opcode(cls):
         return 2
@@ -58,7 +64,10 @@ class LDB(SingleConsumer):
     def params_def(cls):
         return [
             LParam(13, 16, "target"),
-            NextWordParam("address")
+            NextWordParam(
+                "value", 
+                param_type="ADDR_OR_REG"
+            )        
         ]
 
 class STB(SingleConsumer):
@@ -69,6 +78,9 @@ class STB(SingleConsumer):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "source "),
-            NextWordParam("address")
+            LParam(13, 16, "source"),
+            NextWordParam(
+                "address", 
+                param_type="ADDR_OR_REG"
+            )        
         ]

@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 from specification import InstructionType, SubI, BIT_WIDTH
 from specification.param import LParam, PositionalParameter, SubParam
 
@@ -110,7 +111,7 @@ def draw_bit_table(instruction_type) -> str:
 
 def generate_doc(instruction, depth=1):
     doc = []
-    doc.append("<h{d}>{name}</h{d}>".format(d=(depth+1), name=instruction.__name__))
+    doc.append("<h{d}>{name}</h{d}>".format(d=(depth+1), name=instruction.cmd_name()))
     main_doc = instruction.__doc__ or ""
     doc.append("".join("<p>{}<p>".format(v) for v in main_doc.split("\n\n")))
     doc.append(draw_bit_table(instruction))

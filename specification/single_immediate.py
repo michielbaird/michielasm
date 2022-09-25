@@ -28,8 +28,8 @@ class LDI(SingleImmediate):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "target_register"),
-            LParam(4, 13, "value")
+            LParam(13, 16, "target"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
         ]
 
 class STI(SingleImmediate):
@@ -39,8 +39,8 @@ class STI(SingleImmediate):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "address_register"),
-            LParam(4, 13, "value")
+            LParam(13, 16, "address_register", param_type="ADDR_OR_REG"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
         ]
 
 class LDIB(SingleImmediate):
@@ -51,7 +51,7 @@ class LDIB(SingleImmediate):
     def params_def(cls):    
         return [
             LParam(13, 16, "target_register"),
-            LParam(4, 13, "value")
+            LParam(4, 13, "value", param_type="NUM_EXPR")
         ]
 
 class STIB(SingleImmediate):
@@ -61,6 +61,6 @@ class STIB(SingleImmediate):
     @classmethod
     def params_def(cls):
         return [
-            LParam(13, 16, "address_register"),
-            LParam(4, 13, "value")
+            LParam(13, 16, "address_register", param_type="ADDR_OR_REG"),
+            LParam(4, 13, "value", param_type="NUM_EXPR")
         ]
