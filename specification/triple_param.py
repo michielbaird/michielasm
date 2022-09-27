@@ -76,3 +76,19 @@ class STRB(TripleParam):
             LParam(7, 10, "offset_register"),
             LParam(10, 13, "value_register"),
         ]
+
+class LrOperator(TripleParam):
+    @classmethod
+    def opcode(cls):
+        return 4
+    @classmethod
+    def cmd_name(cls):
+        return "LT"
+    
+    @classmethod
+    def params_def(cls):
+        return [
+            LParam(7, 10, "reg_1"),
+            LParam(10, 13, "reg_2"),
+            LParam(13, 16, "target"),
+        ]

@@ -14,6 +14,15 @@ MOV = ~"mov"i SEP REGISTER SEP REGISTER
 NOOP = ~"noop"i
 HALT = ~"halt"i
 JMP = ~"jmp"i SEP ADDR_OR_REG
+DATA = DB / DW / DD / DQ
+DB = ~"DB"i SEP DATA_EXPR
+DW = ~"DW"i SEP DATA_EXPR
+DD = ~"DD"i SEP DATA_EXPR
+DQ = ~"DQ"i SEP DATA_EXPR
+DATA_EXPR = DEX (SEP? "," SEP? DEX)* 
+
+DEX = NUM_EXPR / STRING
+STRING = ~"'((:?\\\'|[^\'])*)'"
 
 {details}
 
@@ -21,7 +30,7 @@ ADDR_OR_REG = ADDRESS_EXPR / REGISTER
 ADDRESS_EXPR = (LABEL_IDENT PLUSMINUS NUM_EXPR) / (NUM_EXPR PLUSMINUS LABEL_IDENT) / NUM_EXPR / LABEL_IDENT
 NUM_EXPR = PRODUCT (PLUSMINUS PRODUCT)*
 PRODUCT = VALUE (MUL VALUE)*
-VALUE = NUM / ( '(' NUM_EXPR ')' )
+VALUE = NUM / ( "(" NUM_EXPR ")" )
 
 
 PLUSMINUS = SEP? ("+"/"-") SEP?
@@ -41,7 +50,7 @@ COMMENT = ~".*"
 def collect_commands(instruction):
     commands = all_leaf_commands()
     grammars = []
-    top = ["COMMAND = MOV / NOOP / JMP / HALT"]
+    top = ["COMMAND = MOV / NOOP / JMP / HALT / DATA"]
     for cmd in commands:
         name = cmd.cmd_name()
         top.append(name.upper())

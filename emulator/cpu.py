@@ -1,6 +1,6 @@
 from emulator.alu import ALU
 from emulator.bin_parser import BinParser
-from emulator.executors import AddIExecutor, JezExecutor, LDExecutor, LDIBExecutor, LDIExecutor, LDRExecutor, LDWExecutor, NotExecutor, RSRExecutor, STBExecutor, STBIExecutor, STExecutor, STIExecutor, STRBExecutor, STRExecutor, SubIExecutor, WSRExecutor
+from emulator.executors import AddIExecutor, JezExecutor, LDExecutor, LDIBExecutor, LDIExecutor, LDRBExecutor, LDRExecutor, LDWExecutor, NotExecutor, RSRExecutor, STBExecutor, STBIExecutor, STExecutor, STIExecutor, STRBExecutor, STRExecutor, SubIExecutor, WSRExecutor
 from .system import System
 
 class CPU:
@@ -29,6 +29,8 @@ class CPU:
                 self.processInstruction()
                 current = self.system.PC.val
                 if old == current:
+                    if self.system.output_reg.thread is not None:
+                        self.system.output_reg.thread.join()
                     print("Program Halted Successfully!")
                     break
                 old = current
@@ -72,6 +74,7 @@ SpecialRegisters:
         executors["SL"] = ALU(lambda r1, r2: r1 << r2)
         executors["SR"] = ALU(lambda r1, r2: r1 >> r2)
         executors["SUB"] = ALU(lambda r1, r2: r1 - r2)
+        executors["LT"] = ALU(lambda r1, r2: int(not (r1 < r2)) )
 
         executors["ADDI"] = AddIExecutor()
         executors["SUBI"] = SubIExecutor()
@@ -92,7 +95,7 @@ SpecialRegisters:
 
         executors["LDR"] = LDRExecutor()
         executors["STR"] = STRExecutor()
-        executors["LDRB"] = LDRExecutor()
+        executors["LDRB"] = LDRBExecutor()
         executors["STRB"] = STRBExecutor()
 
 
