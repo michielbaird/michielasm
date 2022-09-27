@@ -11,6 +11,10 @@ def expand_aliases(statement: Statement) -> Statement:
                 commands.append(
                     Command("JEZ", [Register(0), Register(7)])
                 )
+            case Command("JMP", [Register(val)]):
+                commands.append(
+                    Command("JEZ", [Register(0), Register(val)])
+                )
             case Command("JEZ", [Register(r), Address(addr, offset)]):
                 commands.append(
                     Command("LDW", [Register(7), Address(addr, offset)])

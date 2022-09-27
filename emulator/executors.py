@@ -105,7 +105,7 @@ class STIExecutor(CommandExecutor):
 
 class LDIBExecutor(CommandExecutor):
     def execute(self, instruction: LDIB, system: System):
-        target_id = instruction.get_arg("target")
+        target_id = instruction.get_arg("target_register")
         value = instruction.get_arg("value")
         system.registers[target_id].val = value & 0xff
 

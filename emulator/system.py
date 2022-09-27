@@ -8,14 +8,16 @@ class System:
         self.error_flag = Flag()
         self.overflow_flag = Flag()
         self.underflow_flag = Flag()
+        self.output_reg = OutputRegister()
         self.special = [
             self.PC,
             FlagsRegister(
                 self.error_flag,
                 self.overflow_flag,
-                self.underflow_flag
+                self.underflow_flag,
+                OutputFullFlag(self.output_reg.que)
             ),
-            OutputRegister(),
+            self.output_reg,
             IORegister(),
             IORegister(),
             IORegister(),

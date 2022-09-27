@@ -16,8 +16,8 @@ end_loop:
 rsr $s0 $r7;
 addi $r7 $r7 4;
 jez $r0 $r7;
-st $r2 memory;
+st $r2 stack;
 halt;
-
-
-memory:
+msg_len: dw 6;
+msg: db 'Hello\n';
+stack:

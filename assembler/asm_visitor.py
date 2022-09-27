@@ -1,3 +1,4 @@
+import ast
 from parsimonious import NodeVisitor
 from parsimonious.nodes import Node
 from typing import Sequence, Any, Union
@@ -75,6 +76,26 @@ class AsmVisitor(NodeVisitor):
                 val -= rhs[1]
         return val
     
+    def visit_STRING(self, node, visited_children):
+        return node.match.group(1)
+
+    def visit_DATA(self, node, visited_children):
+        child = visited_children[0]
+        node_type = child[0].expr_name
+        args = child[1][-1]
+
+        
+        return DataPiece.fromArgs(node_type, args)
+
+    def visit_DATA_EXPR(self, node, visited_children):
+        args = [visited_children[0]]
+        for extra in visited_children[1][1]:
+            args.append(extra[1][-1])
+        return args
+
+    def visit_DEX(self, node, visited_children):
+        return visited_children[0]
+    
     def visit_SEP(self, node, visited_children) -> None:
         return None
     
@@ -88,6 +109,8 @@ class AsmVisitor(NodeVisitor):
         return visited_children[0]
 
     def visit_COMMAND(self, node, visited_children) -> Command:
+        if isinstance(visited_children[0], DataPiece):
+            return visited_children[0]
         expression = visited_children[0][0]
         expr_name = expression.expr_name
         #print(expr_name)
@@ -130,6 +153,10 @@ def build_binary(program: Sequence[Statement]) -> bytes:
     result = []
     for statement in program:
         for cmd in statement.commands:
+            match cmd:
+                case DataPiece(_, _):
+                    result.append(cmd)
+                    continue
             cmd_type = cmd_dict[cmd.name]
             args = {}
             for p_t, p in zip(cmd_type.floating_params(), cmd.params):
@@ -159,6 +186,10 @@ def calculate_labels(statements: Sequence[Statement], offset=0) -> dict[str, int
         if stmt.label is not None:
             label_dict[stmt.label.name] = current
         for cmd in stmt.commands:
+            match cmd:
+                case DataPiece(_, val):
+                    current += len(val)
+                    continue
             current += 2
             if cmd_dict[cmd.name].should_consume_next_word():
                 current += 2
