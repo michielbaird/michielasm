@@ -22,7 +22,7 @@ DQ = ~"DQ"i SEP DATA_EXPR
 DATA_EXPR = DEX (SEP? "," SEP? DEX)* 
 
 DEX = NUM_EXPR / STRING
-STRING = ~"'((:?\\\'|[^\'])*)'"
+STRING = ~"'((:?\\\'|[^\'])*?)'"
 
 {details}
 

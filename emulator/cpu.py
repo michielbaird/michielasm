@@ -12,6 +12,9 @@ class CPU:
 
     def processInstruction(self):
         lsb, msb = self.system.memory.read_word(self.PC.val)
+        if self.PC.val == 46:
+            pass
+            #print("hello")
         self.PC.inc()
         word = (msb << 8) | lsb
         instruction = self.parser.parse_instruction(
@@ -74,7 +77,7 @@ SpecialRegisters:
         executors["SL"] = ALU(lambda r1, r2: r1 << r2)
         executors["SR"] = ALU(lambda r1, r2: r1 >> r2)
         executors["SUB"] = ALU(lambda r1, r2: r1 - r2)
-        executors["LT"] = ALU(lambda r1, r2: int(not (r1 < r2)) )
+        executors["LT"] = ALU(lambda r1, r2: int(not (r1 < r2)))
 
         executors["ADDI"] = AddIExecutor()
         executors["SUBI"] = SubIExecutor()

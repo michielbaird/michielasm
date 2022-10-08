@@ -46,36 +46,42 @@ main:
     addi $r6 $r6 12     ; 
     jmp fib             ;
     get_result:
-    ldi $r7 8           ;
-    str $r6 $r7 $r0     ;
-    addi $r7 $r7 2      ;
-    str $r6 $r7 $r0     ;
-    ldw $r7 ddone       ;
-    ldi $r1 12 + 2      ;
-    str $r6 $r1 $r7     ;
-    ldi $r7 8           ;
-    add $r6 $r7 $r7     ;
-    ldi $r1 12 + 4      ;
-    str $r6 $r1 $r7     ;
-    ldi $r7 6           ;
-    ;ldw $r7 1234       ;
-    ldr $r6 $r7 $r7     ;
-    ldi $r1 12 + 6      ;
-    str $r6 $r1 $r7     ;
-    ldi $r7 10          ;
-    ldi $r1 12 + 8      ;
-    str $r6 $r1 $r7     ;
-    ldi $r1 12          ;
-    str $r6 $r1 $r6     ;
-    addi $r6 $r6 12     ;
-    jmp divmod          ;
-    ddone:
+
+    ldw $r1 mn_pre;
+    ldi $r7 12 + 2;
+    str $r6 $r7 $r1;
+    ldw $r1 prefix_ptr;
+    ldi $r7 12;
+    str $r6 $r7 $r6;
+    addi $r6 $r6 12;
+    jmp print_array;
+    mn_pre:
+
+
+    ldi $r7 12 + 2      ;
+    ldw $r2 end_main    ;
+    str $r6 $r7 $r2     ;
     ldi $r7 6           ;
     ldr $r6 $r7 $r1     ;
-    ldi $r7 8           ;
-    ldr $r6 $r7 $r2     ;
-    ldi $r7 10          ;
-    ldr $r6 $r7 $r3     ;   
+    ldi $r7 12 + 6      ;
+    str $r6 $r7 $r1     ;
+    ldi $r7 12          ;
+    str $r6 $r7 $r6     ;
+    addi $r6 $r6 12     ;
+    jmp print_number    ;
+    end_main:
+
+    ldw $r1 mn_suf;
+    ldi $r7 12 + 2;
+    str $r6 $r7 $r1;
+    ldw $r1 suffix_ptr;
+    ldi $r7 12;
+    str $r6 $r7 $r6;
+    addi $r6 $r6 12;
+    jmp print_array;
+    mn_suf:
+
+    
 
     halt;
 
@@ -107,7 +113,7 @@ main:
 fib:
     ldi $r1 6;
     ldr $r6 $r1 $r2;
-    ldi $r1 2;
+    ldi $r1 3;
     lt $r2 $r1 $r1;
     ldi $r3 1;
     jez $r1 fib_final;
@@ -201,6 +207,8 @@ divmod:
         sl $r2 $r7 $r4;
         ; check overflow
         rsr $s1 $r5;
+        ldi $r7 2;
+        and $r5 $r7 $r5;
         jez $r5 dm_no_overflow;
     dm_step2:
         wsr $s1 $r0;
@@ -248,9 +256,9 @@ divmod:
     dm_base:
     ldi $r7 4;
     ldr $r6 $r7 $r7;
-    st $r7 $r0; 
+    str $r7 $r0 $r0; 
     addi $r7 $r7 2;
-    st $r7 $r1; 
+    str $r7 $r0 $r1; 
 
 
     dm_return:
@@ -273,11 +281,136 @@ add_to_vec:
     ldi $r7 2;
     ldr $r6 $r7 $r7;
     ldr $r6 $r0 $r6;
-    jez $r0 $r7; 
+    jez $r0 $r7;
+
+; Register func
+; $r1 = address of message
+rev_vec:
+    ldr $r1 $r0 $r2; len;
+    addi $r1 $r3 2;  START
+    add $r3 $r2 $r4;
+    subi $r4 $r4 1; end
+    rv_loop:
+        lt $r3 $r4 $r5;
+        jez $r5 rv_next;
+        jmp end_rv_loop;
+        rv_next: ldrb $r3 $r0 $r1;
+        ldrb $r4 $r0 $r2;
+        strb $r3 $r0 $r2;
+        strb $r4 $r0 $r1;
+        addi $r3 $r3 1;
+        subi $r4 $r4 1;
+        jmp rv_loop;
+    end_rv_loop:
+    ldi $r7 2;
+    ldr $r6 $r7 $r7;
+    ldr $r6 $r0 $r6;
+    jez $r0 $r7;
+
+; - ret - offset 2
+; - res - offset 4 -- Not used
+; n/div - offset 6
+; mod  - offset 8
+; start of tmp array - offset 10
+; start of raw_temp  - offset 12
+; Frame Length = 22
+print_number:
+    ldi $r7 10;
+    str $r6 $r7 $r0;
+    
+    pn_loop:
+        ldw $r1 pn_edm;
+        ldi $r7 22 + 2;
+        str $r6 $r7 $r1;
+        addi $r6 $r1 6;
+        ldi $r7 22 + 4;
+        str $r6 $r7 $r1;
+        ldi $r7 6;
+        ldr $r6 $r7 $r1;
+        ldi $r7 22 + 6;
+        str $r6 $r7 $r1;
+        ldi $r1 10;
+        ldi $r7 22 + 8;
+        str $r6 $r7 $r1;
+        ldi $r7 22;
+        str $r6 $r7 $r6;
+        addi $r6 $r6 22;
+        jmp divmod;
+        pn_edm: ldw $r1 pn_eaa;
+        ldi $r7 22 + 2;
+        str $r6 $r7 $r1; 
+        ldi $r7 8;
+        ldr $r6 $r7 $r2; Maybe add it here?
+        addi $r2 $r2 48; 
+        addi $r6 $r1 10;
+        ldi $r7 22;
+        str $r6 $r7 $r6;
+        addi $r6 $r6 22;
+        jmp add_to_vec;
+        pn_eaa: ldi $r7 6;
+        ldr $r6 $r7 $r1;
+        jez $r1 pn_endloop;
+        jmp pn_loop;
+    pn_endloop:
+    ; Reverse
+    ldw $r1 pn_er;
+    ldi $r7 22 + 2;
+    str $r6 $r7 $r1;
+    addi $r6 $r1 10;
+    ldi $r7 22;
+    str $r6 $r7 $r6;
+    addi $r6 $r6 22;
+    jmp rev_vec;
+
+    pn_er:
+    ldw $r1 pn_pp;
+    ldi $r7 22 + 2;
+    str $r6 $r7 $r1;
+    addi $r6 $r1 10;
+    ldi $r7 22;
+    str $r6 $r7 $r6;
+    addi $r6 $r6 22;
+    jmp print_array;
+    pn_pp:
+    
+    
+    ldi $r7 2;
+    ldr $r6 $r7 $r7;
+    ldr $r6 $r0 $r6;
+    jez $r0 $r7;
+
+;
+; $r1 msg_start
+;
+print_array:
+    ldr $r1 $r0 $r2;
+    addi $r1 $r1 2;
+    pa_loop:
+        jez $r2 end_pa_loop;
+        ldrb $r1 $r0 $r3;
+        pa_full: ldi $r7 8;
+        rsr $s1 $r5;
+        and $r7 $r5 $r5;
+        jez $r5 pa_empty;
+        jmp pa_full;
+        pa_empty: wsr $s2 $r3;
+        subi $r2 $r2 1;
+        addi $r1 $r1 1;
+        jmp pa_loop;
+    end_pa_loop:
+    
+    ldi $r7 2;
+    ldr $r6 $r7 $r7;
+    ldr $r6 $r0 $r6;
+    jez $r0 $r7;
+
 
 data:
-input: dw 12;
-msg_ptr: dw 0;
-msg_raw: db 0,0,0,0,0,0,0,0;
+input: dw 23;
+prefix_ptr: dw 8;
+prefix_raw: db 'Result: ';
+suffix_ptr: dw 1;
+suffix_raw: db '\n';
+
 
 stack:
