@@ -21,6 +21,7 @@ class OutputFullFlag(Flag):
         pass
     @property
     def val(self):
+        #print(self.fifo.full())
         return self.fifo.full()
     @val.setter
     def val(self, v):
@@ -76,6 +77,7 @@ class OutputRegister(InternalRegister):
         raise NotImplementedError
     @val.setter
     def val(self, v):
+        #print("0x{:02x}".format(v))
         raw_v = v & 0xff
         self.que.put(raw_v, block=False)
         if self.thread is None or (not self.thread.is_alive()):
@@ -85,6 +87,7 @@ class OutputRegister(InternalRegister):
         while not self.que.empty():
             v = self.que.get()
             time.sleep(0.010)
+            #print("0x{:02x}".format(v))
             sys.stdout.buffer.write(bytes([v]))
             sys.stdout.buffer.flush()
             #print(chr(v), end="", flush=True)

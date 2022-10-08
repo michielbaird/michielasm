@@ -77,7 +77,7 @@ class STRB(TripleParam):
             LParam(10, 13, "value_register"),
         ]
 
-class LrOperator(TripleParam):
+class LtOperator(TripleParam):
     @classmethod
     def opcode(cls):
         return 4

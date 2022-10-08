@@ -1,3 +1,3 @@
 from assemble import run
 
-run("hello.asm", "hello.bin")
+run("callstack.asm", "callstack.bin")

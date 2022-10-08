@@ -2,13 +2,13 @@ text:
     ld $r1 msg_len;
     ldw $r2 msg;
     loop:
-    jez $r1 end_loop;
-    ldrb $r2 $r0 $r3;
-    ldw $r6 s1s1;
-    jmp print;
-    s1s1: subi $r1 $r1 1;
-    addi $r2 $r2 1;
-    jmp loop;
+        jez $r1 end_loop;
+        ldrb $r2 $r0 $r3;
+        ldw $r6 s1s1;
+        jmp print;
+        s1s1: subi $r1 $r1 1;
+        addi $r2 $r2 1;
+        jmp loop;
     end_loop:
     halt; 
 ; Prints out value in the $r3 to the console
@@ -27,6 +27,6 @@ print:
 
 
 data:
-msg_len: DW 17;
-msg: DB 'Hello World😀!\n';
+msg_len: DW 34;
+msg: DB 'Hello World😀!\naaaaaaaaaaaaaaaaaaaa';
 stack:
