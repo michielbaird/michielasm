@@ -5,30 +5,31 @@ use ieee.numeric_std.all;
 
 
 entity ArithmaticLogicUnit is
-generic(
-    BITWIDTH: integer := 16
-);
-port(
-    -- xcxc do I want an enable bit here or wrap it?
-    -- clk: in std_logic;
-    A: in std_logic_vector(BITWIDTH-1 downto 0);
-    B: in std_logic_vector(BITWIDTH-1 downto 0);
-    OPCODE: in integer range 0 to 7;
-    RESULT: out std_logic_vector(BITWIDTH - 1 downto 0);
-    overflow: out std_logic;
-    underflow: out std_logic
-    -- OpCode 
-    -- ------
-    -- 0 - AND
-    -- 1 - OR
-    -- 2 - XOR
-    -- 3 - ADD
-    -- 4 - ADD (unsigned)
-    -- 5 - Shift Left
-    -- 6 - Shift Right
-    -- 7 - SubtractU
-    -- xcxc signals
-);
+    generic(
+        BITWIDTH: integer := 16
+    );
+    port(
+        -- clk: in std_logic;
+        A: in std_logic_vector(BITWIDTH-1 downto 0);
+        B: in std_logic_vector(BITWIDTH-1 downto 0);
+        OPCODE: in integer range 0 to 9;
+        RESULT: out std_logic_vector(BITWIDTH - 1 downto 0);
+        overflow: out std_logic;
+        underflow: out std_logic
+        -- OpCode 
+        -- ------
+        -- 0 - AND
+        -- 1 - OR
+        -- 2 - XOR
+        -- 3 - ADD
+        -- 4 - ADD (unsigned)
+        -- 5 - Shift Left
+        -- 6 - Shift Right
+        -- 7 - SubtractU
+        -- 8 - Less than
+        -- 9 - Not
+        -- xcxc signals
+    );
 end ArithmaticLogicUnit;
 
 architecture behaviour of ArithmaticLogicUnit is
@@ -92,6 +93,14 @@ begin
             when 7 => 
                 RESULT <= std_logic_vector(A_sub_B_unsigned(BITWIDTH-1 downto 0));
                 underflow <= A_sub_B_unsigned(BITWIDTH);
+            when 8 => 
+                if A_unsigned < B_unsigned then
+                    RESULT <= (others => '0');
+                else 
+                    RESULT <= (RESULT'high downto 1 => '0') & '1';
+                end if;
+            when 9 =>
+                RESULT <=  not A;
             when others =>
                 RESULT <= (others => 'X');
         end case;

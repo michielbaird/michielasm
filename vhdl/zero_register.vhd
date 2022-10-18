@@ -17,5 +17,5 @@ architecture behaviour of zero_register is
     signal zero_val: std_logic_vector(DATAWIDTH-1 downto 0) := (others => '0');
 begin
     data_out <= zero_val;
-    error <=  '1' when data_in /= zero_val else '0' ;
+    error <=  '1' when data_in /= zero_val else '0';
 end behaviour;

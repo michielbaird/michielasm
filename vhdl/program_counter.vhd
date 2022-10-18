@@ -31,7 +31,6 @@ architecture behaviour of program_counter is
         );
     end component;
     signal reg_data_out: std_logic_vector(DATAWIDTH-1 downto 0);
-    signal reg_write_flag: std_logic;
     signal reg_data_in: std_logic_vector(DATAWIDTH-1 downto 0);
 begin
     value <= reg_data_out;
