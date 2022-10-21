@@ -2,9 +2,14 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity cpu is
+    generic(
+        INPUT_CLOCK_SPEED_HZ: integer :=  100_000_000;
+        UART_CLOCK_SPEED_HZ: integer := 9600
+    );
     port(
         rst: in std_logic;
-        clk: in std_logic
+        clk: in std_logic;
+        uart_tx: out std_logic
     );
     
 end entity;
@@ -23,7 +28,8 @@ architecture behaviour of cpu is
             write_flag: in std_logic;
             error_in: in std_logic;
             overflow_in: in std_logic;
-            underflow_in: in std_logic
+            underflow_in: in std_logic;
+            output_full_flag: in std_logic
         );
     end component;
     component program_counter is
@@ -62,6 +68,19 @@ architecture behaviour of cpu is
             read_data: in std_logic_vector(1 downto 0);
             write_short: in std_logic;
             write_clk: in std_logic;
+            address: in std_logic_vector(15 downto 0)
+        );
+    end component;
+    component mem_unit2 is
+        generic(
+            SIZE: integer := 2**16
+        );
+        port(
+            data: inout std_logic_vector(15 downto 0);
+            read_data: in std_logic_vector(1 downto 0);
+            write_short: in std_logic;
+            write_enable: in std_logic;
+            clk: in std_logic;
             address: in std_logic_vector(15 downto 0)
         );
     end component;
@@ -118,11 +137,28 @@ architecture behaviour of cpu is
             use_address_reg: out std_logic
         );
     end component;
+
+    component uart_register is
+        generic(
+            DATAWIDTH: positive := 16;
+            INPUT_CLOCK_SPEED_HZ: integer :=  INPUT_CLOCK_SPEED_HZ;
+            UART_CLOCK_SPEED_HZ: integer := UART_CLOCK_SPEED_HZ
+        );
+        port(
+            rst: in std_logic;
+            clk: in std_logic;
+            data_in: in std_logic_vector(DATAWIDTH-1 downto 0);
+            data_out: out std_logic_vector(DATAWIDTH-1 downto 0);
+            uart_tx: out std_logic;
+            write_flag: in std_logic;
+            is_full: out std_logic
+        );
+    end component;
     
 
     -- Memory Unit Control --
     signal mem_read_data: std_logic_vector(1 downto 0);
-    signal mem_write_clk: std_logic;
+    --signal mem_write_clk: std_logic;
     signal mem_write_short: std_logic;
     signal mem_address_line: std_logic_vector(15 downto 0);
     signal use_address_reg: std_logic;
@@ -145,6 +181,7 @@ architecture behaviour of cpu is
     signal fr_error_in: std_logic;
     signal fr_overflow_in: std_logic;
     signal fr_underflow_in: std_logic;
+    signal output_full_flag: std_logic;
 
     -- A BUS -- 
     signal A_data_bus: std_logic_vector(15 downto 0);
@@ -169,16 +206,17 @@ architecture behaviour of cpu is
     alias si_value: std_logic_vector(8 downto 0) is register_out(17)(12 downto 4);
 
 begin
-    MEM_UNIT: Memory_Unit
+    MEM_UNIT: mem_unit2
         port map(
             result_data_bus,
             mem_read_data, 
             mem_write_short, 
-            mem_write_clk,
+            register_write_data(18),
+            clk,
             mem_address_line
         );
 
-    mem_write_clk <= clk and register_write_data(18);
+    --mem_write_clk <= clk and register_write_data(18);
     
     ZERO_REG: zero_register
         port map(result_data_bus, register_out(0), zero_error);
@@ -193,9 +231,10 @@ begin
     
     PC: program_counter port map(rst, clk, pc_write_flag, register_out(8), register_write_data(8), result_data_bus);
 
-    FLAG_REG: flag_register port map(rst, clk, result_data_bus, register_out(9), register_write_data(9), fr_error_in, fr_overflow_in, fr_underflow_in);
+    FLAG_REG: flag_register port map(rst, clk, result_data_bus, register_out(9), register_write_data(9), fr_error_in, fr_overflow_in, fr_underflow_in, output_full_flag);
 
-    SP_REG_2: io_register port map(rst, clk, result_data_bus, register_out(10), register_write_data(10));
+    SP_REG_2: uart_register port map(rst, clk, result_data_bus, register_out(10), uart_tx, register_write_data(10), output_full_flag);
+    --SP_REG_2: io_register port map(rst, clk, result_data_bus, register_out(10), register_write_data(10));
     SP_REG_3: io_register port map(rst, clk, result_data_bus, register_out(11), register_write_data(11));
     SP_REG_4: io_register port map(rst, clk, result_data_bus, register_out(12), register_write_data(12));
     SP_REG_5: io_register port map(rst, clk, result_data_bus, register_out(13), register_write_data(13));

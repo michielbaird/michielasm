@@ -43,6 +43,8 @@ architecture behaviour of state_machine is
         );
     end component;
     signal instruction_type: integer range 0 to 14;
+    signal mem_phase: std_logic := '0';
+    signal internal_mem_read_data: std_logic_vector(1 downto 0) := "00";
     
     alias reg_p0: std_logic_vector(2 downto 0) is instruction(15 downto 13);
     alias reg_p1: std_logic_vector(2 downto 0) is instruction(12 downto 10);
@@ -68,10 +70,12 @@ architecture behaviour of state_machine is
 begin
     id: instruction_decoder port map(instruction, instruction_type);
 
-    state_output: process(state, instruction, instruction_type, clk, rst)
+    mem_read_data <= internal_mem_read_data;
+
+    state_output: process(state, instruction, instruction_type, clk, rst, mem_phase)
     begin
         pc_write_flag <= '0';
-        mem_read_data <= "00";
+        internal_mem_read_data <= "00";
         mem_write_short <= '0';
         a_bus_selector <= 0;
         b_bus_selector <= 0;
@@ -82,10 +86,10 @@ begin
         if rst = '0' then
             case state is
                 when fetch => 
-                    mem_read_data <= "11";
+                    internal_mem_read_data <= "11";
                     write_index <= 17;
-                    write_flag <= '1';
-                    pc_write_flag <= '1';
+                    write_flag <= mem_phase;
+                    pc_write_flag <= mem_phase;
                 when execute_phase_0 => 
                     case instruction_type is
                         when double_immediate =>
@@ -153,14 +157,14 @@ begin
                             write_flag <= '1';
                         when consume_load_word =>
                             write_index <= to_integer(unsigned(reg_p0));
-                            mem_read_data <= "11";
-                            write_flag <= '1';
-                            pc_write_flag <= '1';
+                            internal_mem_read_data <= "11";
+                            write_flag <= mem_phase;
+                            pc_write_flag <= mem_phase;
                         when consume_load_address | consume_store => -- needs phase 2
                             write_index <= 16;
-                            mem_read_data <= "11";
-                            write_flag <= '1';
-                            pc_write_flag <= '1';
+                            internal_mem_read_data <= "11";
+                            write_flag <= mem_phase;
+                            pc_write_flag <= mem_phase;
                         when invalid => -- ERROR CASE
                             a_bus_selector <= 0;
                             b_bus_selector <= 0;
@@ -190,11 +194,11 @@ begin
                     write_flag <= '1';
                 when rel_load_state =>
                     write_index <= to_integer(unsigned(reg_p1));
-                    write_flag <= '1';
+                    write_flag <= mem_phase;
                     if instruction(5) = '0' then
-                        mem_read_data <= "11";
+                        internal_mem_read_data <= "11";
                     else
-                        mem_read_data <= "01";
+                        internal_mem_read_data <= "01";
                     end if;
                     use_address_reg <= '1';
                 when rel_store_state =>
@@ -211,8 +215,8 @@ begin
                     alu_opcode <= 1;
                 when cons_load_state =>
                     write_index <= to_integer(unsigned(reg_p0));
-                    mem_read_data <= "11";
-                    write_flag <= '1';
+                    internal_mem_read_data <= "11";
+                    write_flag <= mem_phase;
                     use_address_reg <= '1';
                 when cons_store_state =>
                     write_index <= 18;
@@ -267,10 +271,15 @@ begin
         end case;
     end process next_state_calc;
 
-    state_transition: process(clk, next_state)
+    state_transition: process(clk, next_state, mem_phase, internal_mem_read_data)
     begin
         if rising_edge(clk) then
-            state <= next_state;
+            if mem_phase = '0' and internal_mem_read_data /= "00" then
+                mem_phase <= '1';
+            else 
+                mem_phase <= '0';
+                state <= next_state;
+            end if;
         end if;
     end process state_transition;
 end behaviour;
