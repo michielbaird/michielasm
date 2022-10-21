@@ -36,7 +36,7 @@ architecture test of test_flag_register is
 
 begin
     REG: flag_register
-        port map(rst, clk, data_in, data_out, write_flag, error_in, overflow_in, underflow_in);
+        port map(rst, clk, data_in, data_out, write_flag, error_in, overflow_in, underflow_in, '0');
     
     stimulus: process
         variable ErrCnt : integer := 0 ;

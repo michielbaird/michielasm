@@ -59,7 +59,7 @@ begin
     low_byte <= internal_ram(address_int);
     high_byte <= internal_ram(address_int + 1);
     read_proc: process(read_data, address_int, low_byte, high_byte)
-    begin            
+    begin    
         if address_int >= SIZE then
             data <= (others => '0');
         else
