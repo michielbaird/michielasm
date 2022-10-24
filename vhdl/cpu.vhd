@@ -4,12 +4,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity cpu is
     generic(
         INPUT_CLOCK_SPEED_HZ: integer :=  100_000_000;
-        UART_CLOCK_SPEED_HZ: integer := 9600
+        UART_CLOCK_SPEED_HZ: integer := 115200
     );
     port(
         rst: in std_logic;
         clk: in std_logic;
-        uart_tx: out std_logic
+        uart_tx: out std_logic;
+        ins: out std_logic_vector(15 downto 0)
     );
     
 end entity;
@@ -57,18 +58,6 @@ architecture behaviour of cpu is
             data_in: in std_logic_vector(DATAWIDTH-1 downto 0);
             data_out: out std_logic_vector(DATAWIDTH-1 downto 0);
             write_flag: in std_logic
-        );
-    end component;
-    component Memory_Unit is
-        generic(
-            SIZE: integer :=  2**16
-        );
-        port(
-            data: inout std_logic_vector(15 downto 0);
-            read_data: in std_logic_vector(1 downto 0);
-            write_short: in std_logic;
-            write_clk: in std_logic;
-            address: in std_logic_vector(15 downto 0)
         );
     end component;
     component mem_unit2 is
@@ -204,8 +193,11 @@ architecture behaviour of cpu is
     -- Instruction alias --
     alias di_value: std_logic_vector(6 downto 0) is register_out(17)(9 downto 3);
     alias si_value: std_logic_vector(8 downto 0) is register_out(17)(12 downto 4);
+    
+    signal test_f: std_logic;
 
 begin
+    --uart_tx <= not test_f;
     MEM_UNIT: mem_unit2
         port map(
             result_data_bus,
@@ -245,6 +237,7 @@ begin
     
     mem_address_line <= register_out(16) when use_address_reg = '1' else register_out(8);
     INS_REG: io_register port map(rst, clk, result_data_bus, register_out(17), register_write_data(17));
+    ins <= register_out(17);
     
     register_out(18) <= (15 downto 7 => '0') & di_value(6 downto 0);
     register_out(19) <= (15 downto 9 => '0') & si_value(8 downto 0);

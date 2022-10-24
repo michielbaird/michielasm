@@ -274,7 +274,10 @@ begin
     state_transition: process(clk, next_state, mem_phase, internal_mem_read_data)
     begin
         if rising_edge(clk) then
-            if mem_phase = '0' and internal_mem_read_data /= "00" then
+            if rst = '1' then
+                mem_phase <= '0';
+                state <= fetch;
+            elsif mem_phase = '0' and internal_mem_read_data /= "00" then
                 mem_phase <= '1';
             else 
                 mem_phase <= '0';
