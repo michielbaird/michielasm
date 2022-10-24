@@ -22,7 +22,8 @@ architecture test of test_flag_register is
             write_flag: in std_logic;
             error_in: in std_logic;
             overflow_in: in std_logic;
-            underflow_in: in std_logic
+            underflow_in: in std_logic;
+            output_full_flag: in std_logic
         );
     end component;
     signal data_in: std_logic_vector(15 downto 0):= (others => '0');
@@ -33,10 +34,12 @@ architecture test of test_flag_register is
     signal error_in: std_logic;
     signal overflow_in: std_logic;
     signal underflow_in: std_logic;
+    signal full_uart: std_logic;
 
 begin
+    full_uart <= '0';
     REG: flag_register
-        port map(rst, clk, data_in, data_out, write_flag, error_in, overflow_in, underflow_in, '0');
+        port map(rst, clk, data_in, data_out, write_flag, error_in, overflow_in, underflow_in, full_uart);
     
     stimulus: process
         variable ErrCnt : integer := 0 ;

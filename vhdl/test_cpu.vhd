@@ -12,8 +12,8 @@ end entity;
 architecture test of test_cpu is
     component cpu is
         generic(
-            INPUT_CLOCK_SPEED_HZ: integer :=  100_000_000;
-            UART_CLOCK_SPEED_HZ: integer := 256_000
+            INPUT_CLOCK_SPEED_HZ: integer := 100_000_000;
+            UART_CLOCK_SPEED_HZ: integer := 9600
         );
         port(
             rst: in std_logic;
@@ -32,7 +32,7 @@ begin
     begin
         rst <= '0';
         clk <= '0';
-        for i in 0 to 160000 loop
+        for i in 0 to 1600000 loop
             wait for 10 ns;
             clk <= '1';
             wait for 10 ns;

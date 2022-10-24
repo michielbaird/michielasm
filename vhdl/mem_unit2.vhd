@@ -1,10 +1,9 @@
 library IEEE;
-use IEEE.std_logic_1164.all;
-use IEEE.numeric_std.all;
-use IEEE.math_real.all;
-
-library std;
-use STD.textio.all;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_textio.all;
+use std.textio.all;
 
 
 --use std.textio.all;
@@ -34,23 +33,23 @@ architecture behaviour of mem_unit2 is
 
     type t_data_vector is array (0 to SIZE-1) of std_logic_vector(7 downto 0);
     
-    impure function init_ram_hex return t_data_vector is
-        --file text_file : text open read_mode is "ram_content.bin";
-        variable ram_content : t_data_vector := (others => (others =>'0'));
-        variable offset: integer := 0;
-        TYPE t_char_file IS FILE OF character;
-        FILE file_in : t_char_file OPEN read_mode IS "ram_content.bin";  -- open the frame file for reading
-        VARIABLE char_buffer : character;
-      begin
-        while not endfile(file_in) loop
-            read(file_in, char_buffer);
-            ram_content(offset) := std_logic_vector(to_unsigned(character'POS(char_buffer), 8));
-            offset := offset + 1;
+    impure function InitRamFromFile (RamFileName : in string) return t_data_vector is
+        FILE RamFile : text open read_mode is RamFileName;
+        variable RamFileLine : line;
+        variable temp_bv : bit_vector(7 downto 0);
+        variable RAM : t_data_vector := (others => (others=> '0'));
+    begin
+        for I in 0 to 698 loop
+            readline (RamFile, RamFileLine);
+            --report line;
+            read(RamFileLine, temp_bv);
+            RAM(I) := to_stdlogicvector(temp_bv);
         end loop;
-        return ram_content;
-      end function;
+        return RAM;
+    end function;
 
-    signal internal_ram: t_data_vector := init_ram_hex; --(others => (others => '0'));--
+    signal internal_ram: t_data_vector :=  InitRamFromFile("C:/Users/Michiel Baird/VHDL/michielasm/michielasm.srcs/ram_out4.data"); -- init_ram_hex; --(others => (others => '0'));--
+
     signal address_int: integer := 0;
     signal in_range: std_logic;
     signal low_byte: std_logic_vector(7 downto 0);
