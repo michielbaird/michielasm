@@ -43,6 +43,7 @@ architecture behaviour of ArithmaticLogicUnit is
 
     signal shift_out: std_logic_vector(BITWIDTH - 1 downto 0);
     signal is_right: std_logic;
+    signal shift_overflow: std_logic;
     component BitShifter
         generic(
             BITWIDTH: integer := BITWIDTH
@@ -51,7 +52,8 @@ architecture behaviour of ArithmaticLogicUnit is
             A: in std_logic_vector(BITWIDTH - 1 downto 0);
             SHIFT: in std_logic_vector(BITWIDTH - 1 downto 0);
             IS_RIGHT: in std_logic;
-            RESULT: out std_logic_vector(BITWIDTH - 1 downto 0)
+            RESULT: out std_logic_vector(BITWIDTH - 1 downto 0);
+            OVERFLOW: out std_logic
         );
     end component;
 begin
@@ -64,9 +66,9 @@ begin
     A_sub_B_unsigned <= A_unsigned - B_unsigned;
 
     SHIFTER: BitShifter
-        port map(A, B, is_right, shift_out);
+        port map(A, B, is_right, shift_out, shift_overflow);
 
-    proc_result: process(A, B, OPCODE, AB_signed, AB_unsigned, A_sub_B_unsigned)
+    proc_result: process(A, B, OPCODE, AB_signed, AB_unsigned, A_sub_B_unsigned, shift_out, is_right, shift_overflow, A_signed, B_signed, A_unsigned, B_unsigned)
     begin
         is_right <= '0';
         overflow <= '0';
@@ -87,9 +89,11 @@ begin
                 overflow <= AB_unsigned(BITWIDTH);
             when 5 => 
                 RESULT <= shift_out;
+                overflow <= shift_overflow;
             when 6 => 
                 is_right <= '1';
-                RESULT <= shift_out;            
+                RESULT <= shift_out;
+                underflow <= shift_overflow;     
             when 7 => 
                 RESULT <= std_logic_vector(A_sub_B_unsigned(BITWIDTH-1 downto 0));
                 underflow <= A_sub_B_unsigned(BITWIDTH);

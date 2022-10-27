@@ -3,13 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity flag_register is
     generic(
-        DATAWIDTH: positive := 16;
+        DATAWIDTH: integer range 4 to 128 := 16;
         on_rising_edge: bit := '1'
     );
     port(
         rst: in std_logic;
         clk: in std_logic;
-        data_in: in std_logic_vector(DATAWIDTH-1 downto 0);
+        data_in: in std_logic_vector(2 downto 0);
         data_out: out std_logic_vector(DATAWIDTH-1 downto 0);
         write_flag: in std_logic;
         error_in: in std_logic;

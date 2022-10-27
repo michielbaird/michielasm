@@ -24,23 +24,23 @@ entity instruction_decoder is
 end entity;
 
 architecture behaviour of instruction_decoder is
-    signal di_mask: std_logic_vector(15 downto 0) := "0000000000000001";
-    signal di_val: std_logic_vector(15 downto 0)  := "0000000000000001";
+    constant di_mask: std_logic_vector(15 downto 0) := "0000000000000001";
+    constant di_val: std_logic_vector(15 downto 0)  := "0000000000000001";
 
-    signal si_mask: std_logic_vector(15 downto 0) := "0000000000000011";
-    signal si_val: std_logic_vector(15 downto 0)  := "0000000000000010";
+    constant si_mask: std_logic_vector(15 downto 0) := "0000000000000011";
+    constant si_val: std_logic_vector(15 downto 0)  := "0000000000000010";
 
-    signal bo_mask: std_logic_vector(15 downto 0) := "0000000000011111";
-    signal bo_val: std_logic_vector(15 downto 0)  := "0000000000000000";
+    constant bo_mask: std_logic_vector(15 downto 0) := "0000000000001111";
+    constant bo_val: std_logic_vector(15 downto 0)  := "0000000000000000";
 
-    signal tp_mask: std_logic_vector(15 downto 0) := "0000000000001111";
-    signal tp_val: std_logic_vector(15 downto 0)  := "0000000000001000";
+    constant tp_mask: std_logic_vector(15 downto 0) := "0000000000001111";
+    constant tp_val: std_logic_vector(15 downto 0)  := "0000000000001000";
 
-    signal dbl_mask: std_logic_vector(15 downto 0) := "0000000011111111";
-    signal dbl_val: std_logic_vector(15 downto 0)  := "0000000000000100";
+    constant dbl_mask: std_logic_vector(15 downto 0) := "0000000011111111";
+    constant dbl_val: std_logic_vector(15 downto 0)  := "0000000000000100";
 
-    signal sc_mask: std_logic_vector(15 downto 0) := "0000011111111111";
-    signal sc_val: std_logic_vector(15 downto 0)  := "0000000010000100";
+    constant sc_mask: std_logic_vector(15 downto 0) := "0000011111111111";
+    constant sc_val: std_logic_vector(15 downto 0)  := "0000000010000100";
 begin
     selector: process(instruction)
     begin
