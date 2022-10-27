@@ -3,7 +3,6 @@ use IEEE.std_logic_1164.all;
 
 entity uart_register is
     generic(
-        DATAWIDTH: positive := 16;
         INPUT_CLOCK_SPEED_HZ: integer :=  100_000_000;
         UART_CLOCK_SPEED_HZ: integer := 9600;
         on_rising_edge: bit := '1'
@@ -11,8 +10,8 @@ entity uart_register is
     port(
         rst: in std_logic;
         clk: in std_logic;
-        data_in: in std_logic_vector(DATAWIDTH-1 downto 0);
-        data_out: out std_logic_vector(DATAWIDTH-1 downto 0);
+        data_in: in std_logic_vector(7 downto 0);
+        data_out: out std_logic_vector(15 downto 0);
         uart_tx: out std_logic;
         write_flag: in std_logic;
         is_full: out std_logic
@@ -43,7 +42,6 @@ architecture behaviour of uart_register is
             output_clock_rate: integer := UART_CLOCK_SPEED_HZ
         );
         port(
-            rst: in std_logic;
             input_clk: in std_logic;
             output_clk: out std_logic
         );
@@ -67,10 +65,10 @@ architecture behaviour of uart_register is
 begin
     data_out <= (others => '0');
 
-    out_clk: clock_generator port map(rst, clk, uart_clk);
+    out_clk: clock_generator port map(clk, uart_clk);
 
     fifo_mem: fifo port map(rst, uart_clk, clk, read_en, write_flag,
-         data_in(7 downto 0), uart_output, is_empty, is_full); 
+         data_in, uart_output, is_empty, is_full); 
 
     
     tx_output: process(uart_tx_state, uart_output, uart_tx_index)

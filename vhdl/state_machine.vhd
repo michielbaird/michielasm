@@ -28,10 +28,13 @@ architecture behaviour of state_machine is
         noop_state,
         jump_state,
         imm_store_state,
+        imm_store_state2,
         rel_load_state,
         rel_store_state,
+        rel_store_state2,
         cons_load_state,
-        cons_store_state
+        cons_store_state,
+        cons_store_state2
     );
     signal state: tState;
     signal next_state: tState;
@@ -119,8 +122,8 @@ begin
                             write_flag <= '1';
                             write_index <= 16;
                         when binary_op =>
-                            a_bus_selector <= to_integer(unsigned(reg_p1));
-                            b_bus_selector <= to_integer(unsigned(reg_p2));
+                            a_bus_selector <= to_integer(unsigned(reg_p2));
+                            b_bus_selector <= to_integer(unsigned(reg_p1));
                             alu_opcode <= to_integer(unsigned(reg_p4));
                             write_index <= to_integer(unsigned(reg_p0));
                             write_flag <= '1';
@@ -131,8 +134,8 @@ begin
                             write_index <= 16;
                             write_flag <= '1';
                         when less_than =>
-                            a_bus_selector <= to_integer(unsigned(reg_p1));
-                            b_bus_selector <= to_integer(unsigned(reg_p2));
+                            a_bus_selector <= to_integer(unsigned(reg_p2));
+                            b_bus_selector <= to_integer(unsigned(reg_p1));
                             alu_opcode <= 8;
                             write_index <= to_integer(unsigned(reg_p0));
                             write_flag <= '1';
@@ -171,7 +174,7 @@ begin
                             alu_opcode <= 9;
                             write_index <= 0;
                             write_flag <= '1';
-                    end case;
+                    end case;                
                 when noop_state =>
                     write_flag <= '0';
                     a_bus_selector <= 0;
@@ -184,7 +187,7 @@ begin
                     write_index <= 8;
                     write_flag <= '1';
                     pc_write_flag <= '1';
-                when imm_store_state =>
+                when imm_store_state | imm_store_state2 =>
                     write_index <= 18;
                     use_address_reg <= '1';
                     mem_write_short <= not instruction(3);
@@ -201,7 +204,7 @@ begin
                         internal_mem_read_data <= "01";
                     end if;
                     use_address_reg <= '1';
-                when rel_store_state =>
+                when rel_store_state | rel_store_state2 =>
                     write_index <= 18;
                     use_address_reg <= '1';
                     write_flag <= '1';
@@ -218,7 +221,7 @@ begin
                     internal_mem_read_data <= "11";
                     write_flag <= mem_phase;
                     use_address_reg <= '1';
-                when cons_store_state =>
+                when cons_store_state | cons_store_state2 =>
                     write_index <= 18;
                     use_address_reg <= '1';
                     if instruction(12) = '0' then
@@ -266,6 +269,12 @@ begin
                     when others =>
                         next_state <= fetch;
                 end case;
+            when imm_store_state =>    
+                next_state <= imm_store_state2;    
+            when rel_store_state =>
+                next_state <= rel_store_state2;
+            when cons_store_state =>
+                next_state <= cons_store_state2;
             when others =>
                 next_state <= fetch;
         end case;

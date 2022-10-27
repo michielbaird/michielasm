@@ -7,7 +7,6 @@ entity clock_generator is
         output_clock_rate: integer := 9_600
     );
     port(
-        rst: in std_logic;
         input_clk: in std_logic;
         output_clk: out std_logic
     );
@@ -19,13 +18,10 @@ architecture behaviour of clock_generator is
     signal clock_sig: std_logic := '0';
 begin
     output_clk <= clock_sig;
-    counter_proc: process (input_clk, rst)
+    counter_proc: process (input_clk)
     begin
         if rising_edge(input_clk) then
-            if rst = '1' then
-                counter <= 0;
-                clock_sig <= '0';
-            elsif counter = count_max -1 then
+            if counter = count_max -1 then
                 counter <= 0;
                 clock_sig <= not clock_sig;
             else
