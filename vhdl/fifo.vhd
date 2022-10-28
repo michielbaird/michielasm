@@ -53,6 +53,8 @@ begin
                         head_p := head_p + 1;
                     end if;
                 end if;
+            else
+                data_out <= memory(head_p); 
             end if;
         end if;
 

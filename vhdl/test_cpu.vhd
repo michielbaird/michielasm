@@ -18,37 +18,40 @@ architecture test of test_cpu is
         port(
             rst: in std_logic;
             clk: in std_logic;
-            uart_tx: out std_logic
+            uart_tx: out std_logic;
+            uart_rx: in std_logic;
+            ins: out std_logic_vector(15 downto 0)
         );
         
     end component;
     signal rst: std_logic;
     signal clk: std_logic;
     signal uart_tx: std_logic;
+    signal ins: std_logic_vector(15 downto 0);
     constant INPUT_CLOCK_SPEED_HZ: integer := 100_000_000;
     constant UART_CLOCK_SPEED_HZ: integer := 9600;
 begin
-    CPU_TEST: cpu port map(rst, clk, uart_tx);
+    CPU_TEST: cpu port map(rst, clk, uart_tx, uart_tx, ins);
 
     stimulus: process
     begin
         rst <= '0';
         clk <= '0';
-        for i in 0 to 250_0000 loop
+        for i in 0 to 250_00 loop
             wait for 5 ns;
             clk <= '1';
             wait for 5 ns;
             clk <= '0';
         end loop;
         rst <= '0';
-        for i in 0 to 250_0000 loop
+        for i in 0 to 250_00 loop
             wait for 5 ns;
             clk <= '1';
             wait for 5 ns;
             clk <= '0';
         end loop;
         rst <= '0';
-        for i in 0 to 250_0000 loop
+        for i in 0 to 250_00 loop
             wait for 5 ns;
             clk <= '1';
             wait for 5 ns;

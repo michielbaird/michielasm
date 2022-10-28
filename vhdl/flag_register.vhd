@@ -15,7 +15,8 @@ entity flag_register is
         error_in: in std_logic;
         overflow_in: in std_logic;
         underflow_in: in std_logic;
-        output_full_flag: in std_logic
+        output_full_flag: in std_logic;
+        input_available_flag: in std_logic
     );
 end entity;
 
@@ -49,7 +50,7 @@ begin
         port map(clk, overflow_out, overflow_set, overflow_reset);
     UNDERFLOW_FLAG: error_flag generic map(on_rising_edge)
         port map(clk, underflow_out, underflow_set, underflow_reset);
-    data_out <= (DATAWIDTH-1 downto 4 => '0') & output_full_flag & underflow_out & overflow_out & err_val_out;
+    data_out <= (DATAWIDTH-1 downto 5 => '0') & input_available_flag & output_full_flag & underflow_out & overflow_out & err_val_out;
     
     err_flag_reset <= rst or (write_flag and (not data_in(0)));
     overflow_reset <= rst or (write_flag and (not data_in(1)));
