@@ -26,7 +26,8 @@ architecture behaviour of uart_register is
     component fifo is
         generic(
             SIZE: positive := 16;
-            DATAWIDTH: positive := 8 -- only and 8 bit register
+            DATAWIDTH: positive := 8; -- only and 8 bit register
+            latch_output: boolean := false
         );
         port(
             rst: in std_logic;
@@ -90,7 +91,7 @@ begin
 
     out_clk: clock_generator port map(clk, uart_clk);
 
-    fifo_mem: fifo port map(rst, uart_clk, clk, read_en, write_flag,
+    fifo_mem: fifo generic map(latch_output => true) port map(rst, uart_clk, clk, read_en, write_flag,
          data_in, uart_output, is_empty, is_full); 
 
     
@@ -137,7 +138,7 @@ begin
         end if;
     end process tx_state_proc;
 
-    fifo_rx: fifo port map(
+    fifo_rx: fifo  port map(
         rst => rst,
         read_clk => clk,
         write_clk => clk, 

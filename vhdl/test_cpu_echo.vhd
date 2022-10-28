@@ -42,7 +42,7 @@ begin
         wait for clk_period/2;
     end process clock_process;
     
-    CPU_TEST: cpu port map(rst, clk, uart_tx, uart_tx, ins);
+    CPU_TEST: cpu port map(rst, clk, uart_tx, uart_rx, ins);
 
     uart_process: process
         constant word: string := "Hello World";
@@ -62,7 +62,7 @@ begin
             else
                 index := index + 1;
             end if;
-            --bit_index := 0;
+            bit_index := 0;
         else
             uart_rx <= current_b(bit_index - 1);
             bit_index := bit_index + 1;
