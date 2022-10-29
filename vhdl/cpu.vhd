@@ -1,12 +1,11 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
-use ieee.std_logic_unsigned.all;
-
-
+--use ieee.std_logic_unsigned.all;
 
 entity cpu is
     generic(
+        MEMORY_FILE: string := "ram_out.data";
         INPUT_CLOCK_SPEED_HZ: integer :=  100_000_000;
         UART_CLOCK_SPEED_HZ: integer := 115200
     );
@@ -14,6 +13,7 @@ entity cpu is
         rst: in std_logic;
         clk: in std_logic;
         uart_tx: out std_logic;
+        uart_rx: in std_logic;
         ins: out std_logic_vector(15 downto 0)
     );
     
@@ -34,7 +34,8 @@ architecture behaviour of cpu is
             error_in: in std_logic;
             overflow_in: in std_logic;
             underflow_in: in std_logic;
-            output_full_flag: in std_logic
+            output_full_flag: in std_logic;
+            input_available_flag: in std_logic
         );
     end component;
     component program_counter is
@@ -66,6 +67,7 @@ architecture behaviour of cpu is
     end component;
     component dual_port_ram is
         generic(
+            MEMORY_FILE: string := MEMORY_FILE;
             SIZE: integer := 2**16
         );
         port(
@@ -149,8 +151,11 @@ architecture behaviour of cpu is
             data_in: in std_logic_vector(7 downto 0);
             data_out: out std_logic_vector(15 downto 0);
             uart_tx: out std_logic;
+            uart_rx: in std_logic;
+            uart_rx_read: in std_logic;
             write_flag: in std_logic;
-            is_full: out std_logic
+            is_full: out std_logic;
+            has_data: out std_logic
         );
     end component;
     
@@ -160,6 +165,7 @@ architecture behaviour of cpu is
     signal register_write_data: std_logic_vector(18 downto 0);
     signal write_index: integer range register_write_data'range;
     signal write_flag: std_logic;
+    signal consume_input: std_logic; -- xcxc
 
     -- Memory Unit Control --
     signal mem_read_data: std_logic_vector(1 downto 0);
@@ -185,6 +191,7 @@ architecture behaviour of cpu is
     signal fr_overflow_in: std_logic;
     signal fr_underflow_in: std_logic;
     signal output_full_flag: std_logic;
+    signal input_has_data: std_logic;
 
     -- A BUS -- 
     signal A_data_bus: std_logic_vector(15 downto 0);
@@ -245,9 +252,21 @@ begin
     
     PC: program_counter port map(rst, clk, pc_write_flag, register_out(8), register_write_data(8), result_data_bus);
 
-    FLAG_REG: flag_register port map(rst, clk, result_data_bus(2 downto 0), register_out(9), register_write_data(9), fr_error_in, fr_overflow_in, fr_underflow_in, output_full_flag);
+    FLAG_REG: flag_register port map(rst, clk, result_data_bus(2 downto 0), register_out(9), register_write_data(9), fr_error_in, fr_overflow_in, fr_underflow_in, output_full_flag, input_has_data);
 
-    SP_REG_2: uart_register port map(rst, clk, result_data_bus(7 downto 0), register_out(10), uart_tx, register_write_data(10), output_full_flag);
+    SP_REG_2: uart_register port map(
+        rst => rst, 
+        clk => clk, 
+        data_in => result_data_bus(7 downto 0), 
+        data_out => register_out(10), 
+        uart_tx => uart_tx,
+        uart_rx => uart_rx,
+        uart_rx_read => consume_input,  
+        write_flag => register_write_data(10), 
+        is_full => output_full_flag,
+        has_data => input_has_data
+    );
+    consume_input <= '1' when write_flag = '1' and (a_bus_selector = 10 or b_bus_selector = 10) else '0';
 
     SP_REG_3: io_register port map(rst, clk, result_data_bus, register_out(11), register_write_data(11));
     SP_REG_4: io_register port map(rst, clk, result_data_bus, register_out(12), register_write_data(12));

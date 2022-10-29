@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 
 entity dual_port_ram is
     generic(
+        MEMORY_FILE: string := "ram_out.data";
         SIZE: integer := 2**16
     );
     port(
@@ -31,14 +32,14 @@ architecture behaviour of dual_port_ram is
         variable temp_bv : bit_vector(7 downto 0);
         variable RAM : t_data_vector := (others => (others=> '0'));
     begin
-        for I in 0 to 699 loop
+        for I in 0 to 39 loop
             readline (RamFile, RamFileLine);
             read(RamFileLine, temp_bv);
             RAM(I) := to_stdlogicvector(temp_bv);
         end loop;
         return RAM;
     end function;
-    shared variable internal_ram: t_data_vector :=  InitRamFromFile("C:/Users/Michiel Baird/VHDL/michielasm/michielasm.srcs/ram_out4.data"); -- init_ram_hex; --(others => (others => '0'));--
+    shared variable internal_ram: t_data_vector :=  InitRamFromFile(MEMORY_FILE); -- init_ram_hex; --(others => (others => '0'));--
     signal ram_data_a: std_logic_vector(7 downto 0) := (others => '0');
     signal ram_data_b: std_logic_vector(7 downto 0) := (others => '0');
 

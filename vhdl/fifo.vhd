@@ -5,7 +5,8 @@ use IEEE.std_logic_1164.all;
 entity fifo is
     generic(
         SIZE: positive := 16;
-        DATAWIDTH: positive := 16
+        DATAWIDTH: positive := 16;
+        latch_output: boolean := false
     );
     port(
         rst: in std_logic;
@@ -53,6 +54,8 @@ begin
                         head_p := head_p + 1;
                     end if;
                 end if;
+            elsif not latch_output then
+                data_out <= memory(head_p); 
             end if;
         end if;
 

@@ -20,10 +20,10 @@
 
    
 main:
-    ldw $r6 stack       ;
-    ldi $r1 2           ;
-    str $r6 $r1 $r6     ;
-    add $r1 $r6 $r6     ;
+    ldw $r6 stack       ; <d084> <02bb>
+    ldi $r1 2           ; <2022>
+    str $r6 $r1 $r6     ; <d898>
+    add $r1 $r6 $r6     ; <d8b0>
 ; sp 0
 ; ra 0 - offset 2
 ; ra 0 - offset 4
@@ -31,50 +31,50 @@ main:
 ; int div       - offset 8
 ; int mod       - offset 10
 ; frame_size = 12
-    addi $r6 $r7 6      ; -- Result address
-    ldi $r1 (12 + 4)     ;
-    str $r6 $r1 $r7     ;
-    ldw $r7 get_result  ;
-    ldi $r1 (12 + 2)     ;
-    str $r6 $r1 $r7     ;
-    ldw $r7  input      ; --input
-    ldr $r7 $r0 $r7     ;
-    ldi $r1 (12 + 6)     ;
-    str $r6 $r1 $r7     ;
-    ldi $r1 12          ;
-    str $r6 $r1 $r6     ;
-    addi $r6 $r6 12     ; 
-    jmp fib             ;
+    addi $r6 $r7 6      ; -- Result address <f831>
+    ldi $r1 (12 + 4)    ; <2120>
+    str $r6 $r1 $r7     ; <dc98>
+    ldw $r7 get_result  ; <f084> <002e>
+    ldi $r1 (12 + 2)    ; <20e2>
+    str $r6 $r1 $r7     ; <98dc>
+    ldw $r7  input      ; <f084> <02ac> --input
+    ldr $r7 $r0 $r7     ; <fc08>
+    ldi $r1 (12 + 6)    ; <2122>
+    str $r6 $r1 $r7     ; <dc98>
+    ldi $r1 12          ; <02c2>
+    str $r6 $r1 $r6     ; <d898>
+    addi $r6 $r6 12     ; <d861>
+    jmp fib             ; <f084> <007e> <1c04>
     get_result:
 
-    ldw $r1 mn_pre;
-    ldi $r7 12 + 2;
-    str $r6 $r7 $r1;
-    ldw $r1 prefix_ptr;
-    ldi $r7 12;
-    str $r6 $r7 $r6;
-    addi $r6 $r6 12;
-    jmp print_array;
+    ldw $r1 mn_pre      ; <3084> <0046>
+    ldi $r7 12 + 2      ; <e0e2>
+    str $r6 $r7 $r1     ; <c798>
+    ldw $r1 prefix_ptr  ; <3084> <02ae>
+    ldi $r7 12          ; <e0c2>
+    str $r6 $r7 $r6     ; <db98>
+    addi $r6 $r6 12     ; <d861>
+    jmp print_array     ; <f084> <027a> <1c04>
     mn_pre:
 
 
-    ldi $r7 12 + 2      ;
-    ldw $r2 end_main    ;
-    str $r6 $r7 $r2     ;
-    ldi $r7 6           ;
-    ldr $r6 $r7 $r1     ;
-    ldi $r7 12 + 6      ;
-    str $r6 $r7 $r1     ;
-    ldi $r7 12          ;
-    str $r6 $r7 $r6     ;
-    addi $r6 $r6 12     ;
-    jmp print_number    ;
+    ldi $r7 12 + 2      ; <e0e2>
+    ldw $r2 end_main    ; <5084> <0062>
+    str $r6 $r7 $r2     ; <cb98> 
+    ldi $r7 6           ; <e062>
+    ldr $r6 $r7 $r1     ; <c788>
+    ldi $r7 12 + 6      ; <e122>
+    str $r6 $r7 $r1     ; <c798>
+    ldi $r7 12          ; <e0c2>
+    str $r6 $r7 $r6     ; <db98>
+    addi $r6 $r6 12     ; <db61>
+    jmp print_number    ; <f084> <01ee> <1c04>
     end_main:
 
-    ldw $r1 mn_suf;
-    ldi $r7 12 + 2;
-    str $r6 $r7 $r1;
-    ldw $r1 suffix_ptr;
+    ldw $r1 mn_suf      ; <3084> <007a>
+    ldi $r7 12 + 2      ; <e0e2> <c798>
+    str $r6 $r7 $r1     ; <3084>
+    ldw $r1 suffix_ptr  ; 
     ldi $r7 12;
     str $r6 $r7 $r6;
     addi $r6 $r6 12;
@@ -111,10 +111,10 @@ main:
 ; $r7 scratch (not preserved)
 
 fib:
-    ldi $r1 6;
-    ldr $r6 $r1 $r2;
-    ldi $r1 3;
-    lt $r2 $r1 $r1;
+    ldi $r1 6       ; <2062>
+    ldr $r6 $r1 $r2 ; <c888>
+    ldi $r1 3       ; <2032>
+    lt $r2 $r1 $r1  ; <2548>
     ldi $r3 1;
     jez $r1 fib_final;
     ; Preserve registers
@@ -406,11 +406,11 @@ print_array:
 
 
 data:
-input: dw 23;
+input: dw 24;
 prefix_ptr: dw 8;
 prefix_raw: db 'Result: ';
-suffix_ptr: dw 1;
-suffix_raw: db '\n';
+suffix_ptr: dw 2;
+suffix_raw: db '\n\r';
 
 
 stack:
