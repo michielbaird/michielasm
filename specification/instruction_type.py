@@ -12,9 +12,11 @@ BIT_WIDTH = 16
 
 
 class InstructionType(object):        
-    """
-    Base instruction type. All values are can be overwritten by 
-    subclasses of this type. 
+    """Each instruction is 16bits wide. Intstructions are broken up into 6 different
+types. These types aim to match the parameter structure of each command.
+
+Base instruction type. All values are can be overwritten by 
+subclasses of this type. 
     """
     __children = []
     def __init__(self, **kwargs) -> None:

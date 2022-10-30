@@ -30,6 +30,43 @@ HTML_OUTLINE = """
     <style>{style}</style>
     </head>
     <body>
+<h2>System Specification</h2>
+<p>This system aims to run a very minimal assembly. This is described in more 
+detail below. 64KiB of memory is available. Programs start executing at address 0x00.
+Program loading will not be covered here.</p>
+
+<h3>Registers</h3>
+<p>The system has 8 general registers and 8 special registers. Special registers can 
+can only be accessed using the WSR(Write Special Register) and RSR(Read Special Register).</p>
+
+<h4>Special Registers</h4>
+<ul>
+    <li><b>Special Register 0(PC) $sp0</b> - This register programatic accesss to the program counter. This register can be read and written to.</li>
+    <li><b>Special Register 1(Flag) $sp1</b> - Flag register
+        <br/>
+        Bits 0-2 can be reset by writing to zeros to the register. These bits cannot be set by writing 1s to the register.
+        <ul>
+            <li>Bit 0 - Error Flag: An error occured.</li>
+            <li>Bit 1 - Overflow Flag: ALU operation causet an underflow. </li>
+            <li>Bit 2 - Underflow Flag: ALU operation causet an underflow.</li>
+            <li>Bit 3 - Output Buffer Full Flag: When set data <em>written</em> to the IO register will be dropped.</li>
+            <li>Bit 4 - Input Buffer has data flag: Data is available to <em>read</em> in the IO Register.</li>
+            <li>Bit 5 - 15 - Zero: These bits are fix and might be reserved for future.</li>
+        </ul>
+    </li>
+    <li><b>Special Register 2(IO) $sp2</b> - This register is connected to a UART(not explained). Only Bits 0-7 is used. 
+        <ul>
+            <li>Do not write to this register when bit3 in the flag register is set</li>
+            <li>Reading from this register when no data is available it will return zeros</li>
+        </ul>
+    </li>
+    <li><b>Special Register 3-7(GP) $sp3-$sp7</b> Additional General Purpose Registers</li>
+</ul>
+<h4>General Registers</h4>
+<ul>
+    <li><b>Register 0 - $r0 (Zero Register)</b>: This register is fixed to Zero. Writing anything but zero to this register raises an error.</li>
+    <li><b>Register 1-7 - $r1-$r7</b>: General purpose registers</li>
+</ul>
 {body_content}
     </body>
 </html>
